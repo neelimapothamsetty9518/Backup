@@ -1,0 +1,71 @@
+create table employee
+(
+id number(10),
+name varchar2(30),
+salary number(10,2),
+age number(10)
+);
+
+desc employee;
+insert into employee values(1001,'rithu',10000,21); 
+insert into employee values(1002,'kiran',25000,22);
+
+select * from employee;
+select age,name from employee where age=21;
+
+insert into employee(id,name) values(1005,'suresh');
+insert into employee(id,name) values(1004,'likith');
+
+update employee set id=1003 where age=22;
+update employee set salary=70000 where id>=1002;
+
+delete from employee where id=1005;
+
+rename employee to emp
+desc emp;
+
+
+alter table emp add dept varchar2(30);
+select * from emp;
+alter table emp drop column dept;
+
+alter table emp rename column salary to sal;
+alter table emp modify name varchar2(50);
+
+desc emp;
+
+update  emp set age=22 where id=1002;
+select * from emp;
+
+select id,name as empname,sal,sal+1000 as Bonus,sal/20 as perdaysal from emp;
+
+update emp set dept='hr' where id=1004;
+
+insert into emp values(1007,'saiii',67800,55,'hr');
+
+select * from emp where dept<>'hr';
+select * from emp where dept='hr' or age>30;
+
+select * from emp order by age desc;
+
+
+select sum(sal) from emp;
+
+select dept from emp  group by dept;
+select dept,count(name) from emp group by dept;
+
+
+select dept, count(id),sum(sal),max(sal),min(sal) from emp group by dept;
+
+select dept, count(id),sum(sal),max(sal),min(sal) from emp group by dept order by count(id) desc;
+
+select dept,count(id),sum(sal),max(sal),min(sal) from emp group by dept having count(id)>1;
+
+select dept,min(sal) from emp group by dept having min(sal)>20000 order by min(sal); 
+
+select dept,count(id) from emp group by dept ;
+
+select dept,sum(sal) from emp group by dept;
+select dept,sum(sal) from emp group by dept having sum(sal)>100000;
+
+select dept,sum(sal) from emp where dept<>'hr' group by dept having sum(sal)>10000 order by sum(sal);
